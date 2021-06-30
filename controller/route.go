@@ -20,7 +20,7 @@ func init() {
 
 // 可以实现中间件
 func Run() {
-	fmt.Println("123")
+
 	next = "index::Welcome"
 	for {
 		dispatch()
