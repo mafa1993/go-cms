@@ -23,7 +23,9 @@ func Run() {
 
 	next = "index::Welcome"
 	for {
-		dispatch()
+		//dispatch()
+
+		util.CReturn(util.Cfun(dispatch))
 	}
 
 }
