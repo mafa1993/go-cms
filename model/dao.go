@@ -17,18 +17,20 @@ type Model interface {
 }
 
 var (
-	path   string                 = "D:\\phpStudy\\PHPTutorial\\WWW\\go\\src\\sixedu\\data\\" // 数据路径
+	path   string                 = "F:\\learn\\golang\\src\\sixedu\\data\\" // 数据路径
 	suffix string                 = ".sql"
 	models map[string]interface{} // 记录标识 user =》 结构体
 )
 
 // "User" => User{} 不支持
 func init() {
+	fmt.Println("init")
 	// 标识绑定注册
 	models = make(map[string]interface{})
 	models["user"] = NewUser
+	fmt.Println(models)
 
-	userDatas = make(map[string]Model, 0)
+	userDatas = make(map[string]Model)
 	rfdata("user", "username", userDatas)
 }
 
@@ -100,8 +102,9 @@ func toModel(name, pirmay string, datas map[string]Model, data, field []string) 
 	// 2.2.2. 利用反射-》对模型赋值 -- 如果是采用构造函数的方式则需要利用反射获取
 	modelV := reflect.ValueOf(models[name]).Call([]reflect.Value{})[0]
 	// fmt.Printf("modelV type %T \n", modelV)
-	// fmt.Println("data 数据", data) // shineyork 123456 18 男
+	// fmt.Println("data 数据", data)
 	// fmt.Println("field 数据", field)
+
 	var primayValue string // 记录当前主键的数值
 	/*
 		datas := {
